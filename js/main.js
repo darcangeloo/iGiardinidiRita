@@ -59,7 +59,8 @@
       var scrollable = heroSection.offsetHeight - window.innerHeight;
       var progress = scrollable > 0 ? -rect.top / scrollable : 0;
       progress = Math.min(1, Math.max(0, progress));
-      setScrubTime(progress * videoFg.duration);
+      var maxTime = Math.max(0, videoFg.duration - 0.2);
+      setScrubTime(progress * maxTime);
       ticking = false;
     });
   }
