@@ -20,9 +20,18 @@
   document.querySelectorAll(".gallery-item").forEach(function (item) {
     item.addEventListener("click", function () {
       var isEn = document.documentElement.getAttribute("data-lang") === "en";
-      lightboxContent.textContent = isEn
+      var caption = isEn
         ? item.getAttribute("data-caption-en")
         : item.getAttribute("data-caption-it");
+      var src = item.querySelector("img").src;
+      lightboxContent.innerHTML = "";
+      var img = document.createElement("img");
+      img.src = src;
+      img.alt = caption;
+      var cap = document.createElement("p");
+      cap.textContent = caption;
+      lightboxContent.appendChild(img);
+      lightboxContent.appendChild(cap);
       lightbox.hidden = false;
     });
   });
