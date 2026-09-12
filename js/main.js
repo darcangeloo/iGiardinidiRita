@@ -55,10 +55,16 @@
   var ready = false;
   var ticking = false;
   var scrubStarted = false;
+  var bgFrameSkip = 0;
 
   function setScrubTime(t) {
-    if (Math.abs(videoFg.currentTime - t) > 0.03) videoFg.currentTime = t;
-    if (Math.abs(videoBg.currentTime - t) > 0.03) videoBg.currentTime = t;
+    if (Math.abs(videoFg.currentTime - t) > 0.05) videoFg.currentTime = t;
+    // ponytail: blur() is expensive to recompute per frame, so the soft
+    // background copy trails a bit and only reseeks every 3rd tick
+    bgFrameSkip = (bgFrameSkip + 1) % 3;
+    if (bgFrameSkip === 0 && Math.abs(videoBg.currentTime - t) > 0.05) {
+      videoBg.currentTime = t;
+    }
   }
 
   function onScroll() {
