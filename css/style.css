@@ -143,6 +143,24 @@ a { color: inherit; }
 
 .intro p { color: var(--ink); }
 
+.amenities {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+
+.amenities li {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sea);
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  padding: 0.4em 0.9em;
+}
+
 /* -- gallery -- */
 .gallery-grid {
   display: grid;
@@ -253,6 +271,13 @@ a { color: inherit; }
   font-family: var(--font-display);
   font-size: 1.3rem;
   color: var(--garden);
+}
+
+.rating {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sea);
+  margin-top: -0.6rem;
 }
 
 .btn-booking {
