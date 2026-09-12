@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  /* -- riparti sempre dall'hero al reload -- */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+
   /* -- lingua IT/EN -- */
   var langToggle = document.getElementById("langToggle");
   langToggle.addEventListener("click", function () {
