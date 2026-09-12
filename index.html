@@ -6,13 +6,13 @@
 <title>I Giardini di Rita — B&B a Margherita di Savoia, Puglia</title>
 <meta name="description" content="I Giardini di Rita: bed & breakfast a Margherita di Savoia, Puglia, a due passi dalle saline e dal mare Adriatico. Camere curate, giardino mediterraneo, accoglienza familiare.">
 <link rel="canonical" href="https://www.igiardinidirita.it/">
+<link rel="icon" href="assets/logo.jpg" type="image/jpeg">
 
 <!-- Open Graph -->
 <meta property="og:type" content="lodging">
 <meta property="og:title" content="I Giardini di Rita — B&B a Margherita di Savoia">
 <meta property="og:description" content="Bed & breakfast a Margherita di Savoia, Puglia, tra saline rosa e mare Adriatico. Camere curate, giardino mediterraneo, accoglienza familiare.">
-<!-- PLACEHOLDER: creare assets/img/og-image.jpg quando disponibile una foto reale -->
-<meta property="og:image" content="https://www.igiardinidirita.it/assets/img/og-image.jpg">
+<meta property="og:image" content="https://www.igiardinidirita.it/assets/logo.jpg">
 <meta property="og:url" content="https://www.igiardinidirita.it/">
 <meta property="og:locale" content="it_IT">
 
@@ -44,19 +44,21 @@
 <body>
 
 <header class="topbar">
-  <span class="brand">I Giardini di Rita</span>
+  <img class="brand" src="assets/logo.jpg" alt="I Giardini di Rita">
   <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambia lingua / Switch language">
     <span data-lang="it">EN</span>
     <span data-lang="en">IT</span>
   </button>
 </header>
 
-<!-- 1. HERO — video scroll-scrubbing -->
+<!-- 1. HERO — video scroll-scrubbing su mobile, immagine statica su desktop -->
 <section class="hero-scrub" id="hero">
   <div class="hero-sticky">
-    <video class="hero-bg" src="assets/video/hero.mp4" muted playsinline autoplay preload="auto" aria-hidden="true"></video>
-    <video class="hero-fg" src="assets/video/hero.mp4" muted playsinline autoplay preload="auto"
+    <video class="hero-bg" muted playsinline autoplay preload="none" aria-hidden="true"></video>
+    <video class="hero-fg" muted playsinline autoplay preload="none"
       aria-label="Scorcio de I Giardini di Rita, video verticale"></video>
+    <img class="hero-desktop" src="assets/304506912.jpg" alt="Il giardino de I Giardini di Rita illuminato la sera, con luci e piante mediterranee">
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-caption">
       <h1>
         <span data-lang="it">I Giardini di Rita</span>
