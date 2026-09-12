@@ -48,8 +48,7 @@ a { color: inherit; }
   justify-content: space-between;
   padding: 0.75rem 1.25rem;
   color: #fff;
-  background: rgba(35,38,31,.55);
-  backdrop-filter: blur(8px);
+  background: var(--ink);
 }
 
 .brand {
