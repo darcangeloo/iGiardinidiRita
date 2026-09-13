@@ -1,0 +1,269 @@
+{
+  "summary": {
+    "health_score": 57,
+    "business_type": "Lodging (B&B / rooms & garden loft) — local brick-and-mortar",
+    "top_findings": [
+      "Canonical + Open Graph point to www.igiardinidirita.it, which currently serves an unrelated adult-content gate page, not this site",
+      "robots.txt and sitemap.xml both return 404",
+      "Schema is missing sameAs, image, aggregateRating, geo despite the business already having live Booking.com, TripAdvisor, and Facebook profiles with reviews",
+      "Hero desktop image is 690KB, unoptimized, and is the LCP element",
+      "Bilingual toggle never updates <html lang>, and both language variants sit hidden in the same DOM (no hreflang)"
+    ],
+    "quick_wins": [
+      "Point canonical/OG to the live Vercel URL",
+      "Add a 6-line robots.txt and a 1-URL sitemap.xml",
+      "Add sameAs array linking existing Booking/TripAdvisor/Facebook profiles",
+      "Add loading=\"lazy\" to the 5 gallery images",
+      "Compress esterno.jpg to WebP under 150KB",
+      "Link the existing Facebook page from the footer"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 45,
+      "what_works": [
+        "HTTPS + HSTS present",
+        "Correct viewport meta, pinch-zoom not disabled",
+        "Single h1, clean heading hierarchy",
+        "Clean URL, 200 status, CDN cache hit"
+      ],
+      "findings": [
+        {
+          "title": "Canonical/OG domain not owned/live",
+          "severity": "Critical",
+          "description": "canonical, og:url and og:image all reference https://www.igiardinidirita.it/, which currently resolves to an unrelated adult-content landing page (verified live).",
+          "recommendation": "Point canonical/OG to https://i-giardinidi-rita.vercel.app/ until the real domain is purchased and verified serving this site."
+        },
+        {
+          "title": "robots.txt missing",
+          "severity": "High",
+          "description": "GET /robots.txt returns 404.",
+          "recommendation": "Add a minimal robots.txt with a Sitemap directive."
+        },
+        {
+          "title": "sitemap.xml missing",
+          "severity": "High",
+          "description": "GET /sitemap.xml returns 404.",
+          "recommendation": "Add a single-URL sitemap.xml."
+        },
+        {
+          "title": "No hreflang / lang not updated on toggle",
+          "severity": "Medium",
+          "description": "<html lang=\"it\"> never changes when the visitor switches to English via the JS toggle; both language variants exist in the same DOM, one CSS-hidden.",
+          "recommendation": "Set document.documentElement.lang in the toggle handler; consider real /en/ URL + hreflang if English organic traffic matters."
+        },
+        {
+          "title": "No CSP header",
+          "severity": "Low",
+          "description": "Vercel does not set a Content-Security-Policy by default.",
+          "recommendation": "Optional hardening via vercel.json headers; not required for this static, no-input page."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 65,
+      "what_works": [
+        "Original copy, not scraped from Booking.com or Wikipedia",
+        "Specific, citable local facts (salt pan size, Ramsar status, IGP onion, real distances)",
+        "Real photos matching descriptive text"
+      ],
+      "findings": [
+        {
+          "title": "Single page, no depth content",
+          "severity": "Medium",
+          "description": "One-page brochure site has no supporting pages for longer-tail local queries.",
+          "recommendation": "Not urgent for launch; consider 1-2 supporting pages later if organic growth beyond OTA/direct traffic matters."
+        },
+        {
+          "title": "Reviews mentioned but not linked",
+          "severity": "Low",
+          "description": "\"Favoloso 8.8 — 47 recensioni\" is plain text, no link to the review source.",
+          "recommendation": "Link it to the Booking.com listing."
+        },
+        {
+          "title": "Rating discrepancy to verify",
+          "severity": "Info",
+          "description": "Live aggregator search shows a 9.1 rating; site shows 8.8.",
+          "recommendation": "Verify against the live Booking.com extranet figure."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 70,
+      "what_works": [
+        "Title 55 chars, safely within display limits",
+        "Single h1, sequential h2s, no skipped levels",
+        "All images have descriptive alt text"
+      ],
+      "findings": [
+        {
+          "title": "Meta description slightly long",
+          "severity": "Low",
+          "description": "175 characters vs. an ideal ~155-160.",
+          "recommendation": "Trim by 15-20 characters."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 40,
+      "what_works": [
+        "Valid LodgingBusiness JSON-LD with name, description, address, telephone, url, priceRange"
+      ],
+      "findings": [
+        {
+          "title": "Missing sameAs entity links",
+          "severity": "High",
+          "description": "The business has live, reviewed profiles on Booking.com, TripAdvisor, Facebook, and Bedandbreakfast.eu, none referenced in schema.",
+          "recommendation": "Add a sameAs array with all four URLs."
+        },
+        {
+          "title": "Missing image, geo, aggregateRating",
+          "severity": "Medium",
+          "description": "Schema lacks the image, geo coordinates, and aggregateRating properties recommended for LodgingBusiness.",
+          "recommendation": "Add all three; ratingValue 8.8 / reviewCount 47 already displayed in the UI."
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "score": 55,
+      "what_works": [
+        "Hero video correctly gated to mobile-only via matchMedia, never fetched on desktop"
+      ],
+      "findings": [
+        {
+          "title": "Unoptimized hero image",
+          "severity": "High",
+          "description": "assets/esterno.jpg is 690KB with no compression or next-gen format; it is the desktop LCP element.",
+          "recommendation": "Compress + convert to WebP, target under 150KB."
+        },
+        {
+          "title": "No lazy-loading on gallery images",
+          "severity": "Medium",
+          "description": "5 below-the-fold photos load eagerly.",
+          "recommendation": "Add loading=\"lazy\"."
+        },
+        {
+          "title": "No responsive images",
+          "severity": "Medium",
+          "description": "Every photo ships one fixed resolution regardless of device.",
+          "recommendation": "Add srcset/sizes or a smaller mobile copy."
+        },
+        {
+          "title": "No explicit image dimensions",
+          "severity": "Low",
+          "description": "Minor CLS risk while images decode.",
+          "recommendation": "Add width/height attributes."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 65,
+      "what_works": [
+        "7/7 images have descriptive, non-generic alt text"
+      ],
+      "findings": [
+        {
+          "title": "No next-gen formats or size optimization",
+          "severity": "Medium",
+          "description": "All images are unoptimized JPEGs.",
+          "recommendation": "Convert to WebP/AVIF with fallback, compress."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 50,
+      "what_works": [
+        "Specific, extractable facts in body copy (salt pan size, Ramsar status, IGP onion)"
+      ],
+      "findings": [
+        {
+          "title": "No sameAs entity graph",
+          "severity": "Medium",
+          "description": "Same finding as Schema section — this is the top GEO lever available.",
+          "recommendation": "Add sameAs array."
+        },
+        {
+          "title": "No llms.txt",
+          "severity": "Low",
+          "description": "Not a formal standard yet, but some AI crawlers respect it.",
+          "recommendation": "Optional, low priority."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Fix canonical/OG domain to the live Vercel URL",
+          "Add robots.txt with Sitemap directive",
+          "Add sitemap.xml",
+          "Add sameAs array to schema (Booking, TripAdvisor, Facebook, Bedandbreakfast.eu)"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Compress and convert hero image to WebP",
+          "Add loading=\"lazy\" to gallery images",
+          "Add aggregateRating + geo to schema",
+          "Link existing Facebook page from footer",
+          "Sync <html lang> with the IT/EN toggle",
+          "Trim meta description length"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Verify live Booking.com rating matches on-site figure",
+          "Add a Booking/TripAdvisor/Facebook trust-signal row",
+          "Consider supporting pages for long-tail local queries",
+          "Add responsive srcset to gallery photos"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Submit domain + sitemap to Google Search Console once the real domain is live",
+          "Re-check site: indexing after Phase 1 ships",
+          "Re-check \"B&B Margherita di Savoia\" ranking monthly against the named competitors found this session"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  },
+  "local_seo_live_findings": {
+    "existing_profiles": [
+      "https://www.booking.com/hotel/it/i-giardini-di-rita-rooms-amp-garden-loft.html",
+      "https://www.tripadvisor.com/Hotel_Review-g494954-d25610886-Reviews-I_Giardini_Di_Rita_Rooms_Garden_Loft-Margherita_di_Savoia_Province_of_Barletta_Andria.html",
+      "https://www.facebook.com/igiardinidirita/",
+      "https://www.bedandbreakfast.eu/en/a/KV3NuNCabjVq/i-giardini-di-rita-rooms-garden-loft",
+      "https://viaggiareinpuglia.it/it/dettaglio-dormire-mangiare/giardini-rita-affittacamere-margherita-savoia"
+    ],
+    "competitors_ranking_for_bnb_margherita_di_savoia": [
+      "B&B Via Veneto",
+      "B&B La Villetta",
+      "Margheritamare",
+      "ControVento Rooms",
+      "Conchiglia Suite",
+      "MEDUSA Residence B&B",
+      "Vista Mare Luxury Rooms & Apartments"
+    ],
+    "nap_consistency": "Address matches across sources (Via Cavaliere, 15)"
+  }
+}

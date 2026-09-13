@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://i-giardinidi-rita.vercel.app/sitemap.xml

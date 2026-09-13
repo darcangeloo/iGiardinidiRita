@@ -9,7 +9,9 @@
   var langToggle = document.getElementById("langToggle");
   langToggle.addEventListener("click", function () {
     var isEn = document.documentElement.getAttribute("data-lang") === "en";
-    document.documentElement.setAttribute("data-lang", isEn ? "it" : "en");
+    var next = isEn ? "it" : "en";
+    document.documentElement.setAttribute("data-lang", next);
+    document.documentElement.lang = next;
   });
 
   /* -- lightbox galleria -- */

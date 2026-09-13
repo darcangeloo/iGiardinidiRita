@@ -402,6 +402,12 @@ a { color: inherit; }
   margin-bottom: 0.4em;
 }
 
+.footer-links a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .footer-copy {
   opacity: 0.6;
   margin-top: 1.5em;
