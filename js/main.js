@@ -52,48 +52,46 @@
 
   /* -- hero video scroll-scrubbing: solo su mobile, niente video su desktop -- */
   var heroSection = document.getElementById("hero");
-  var videoFg = heroSection.querySelector(".hero-fg");
-  var videoBg = heroSection.querySelector(".hero-bg");
+  var video = heroSection.querySelector(".hero-fg");
   var ready = false;
-  var ticking = false;
+  var target = 0;
+  var rafId = 0;
   var scrubStarted = false;
-  var bgFrameSkip = 0;
 
-  function setScrubTime(t) {
-    if (Math.abs(videoFg.currentTime - t) > 0.05) videoFg.currentTime = t;
-    // ponytail: blur() is expensive to recompute per frame, so the soft
-    // background copy trails a bit and only reseeks every 3rd tick
-    bgFrameSkip = (bgFrameSkip + 1) % 3;
-    if (bgFrameSkip === 0 && Math.abs(videoBg.currentTime - t) > 0.05) {
-      videoBg.currentTime = t;
+  function tick() {
+    rafId = 0;
+    // one seek at a time: seeking again before the last frame is decoded
+    // only piles up decoder work, which is what shows up as stutter
+    if (video.seeking) {
+      rafId = requestAnimationFrame(tick);
+      return;
     }
+    if (Math.abs(video.currentTime - target) > 0.01) video.currentTime = target;
   }
 
   function onScroll() {
-    if (!ready || ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var rect = heroSection.getBoundingClientRect();
-      var scrollable = heroSection.offsetHeight - window.innerHeight;
-      var progress = scrollable > 0 ? -rect.top / scrollable : 0;
-      progress = Math.min(1, Math.max(0, progress));
-      var maxTime = Math.max(0, videoFg.duration - 0.2);
-      setScrubTime(progress * maxTime);
-      ticking = false;
-    });
+    if (!ready) return;
+    var rect = heroSection.getBoundingClientRect();
+    var scrollable = heroSection.offsetHeight - window.innerHeight;
+    var progress = scrollable > 0 ? -rect.top / scrollable : 0;
+    progress = Math.min(1, Math.max(0, progress));
+    target = progress * Math.max(0, video.duration - 0.2);
+    if (!rafId) rafId = requestAnimationFrame(tick);
   }
 
   function startScrub() {
     if (scrubStarted) return;
     scrubStarted = true;
-    videoFg.src = "assets/video/hero.mp4";
-    videoBg.src = "assets/video/hero.mp4";
-    videoFg.addEventListener("loadedmetadata", function () {
+    video.addEventListener("loadedmetadata", function () {
       ready = true;
-      videoFg.pause();
-      videoBg.pause();
+      video.pause();
       onScroll();
     });
+    // whole file in memory: seeks never wait on a network range request
+    fetch("assets/video/hero.mp4")
+      .then(function (r) { return r.blob(); })
+      .then(function (b) { video.src = URL.createObjectURL(b); })
+      .catch(function () { video.src = "assets/video/hero.mp4"; });
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
   }
