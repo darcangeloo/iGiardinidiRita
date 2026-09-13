@@ -108,24 +108,36 @@
     if (!rafId) rafId = requestAnimationFrame(tick);
   }
 
-  // coarse-to-fine: every 32nd frame first, then 16th, ... then all,
+  // coarse-to-fine order: every 32nd frame first, then 16th, ... then all,
   // so the first seconds of scrolling already have frames to show
   function loadFrames(count) {
+    var order = [];
     var seen = {};
     for (var step = 32; step >= 1; step /= 2) {
       for (var i = 0; i < count; i += step) {
         if (seen[i]) continue;
         seen[i] = true;
-        (function (i) {
-          var img = new Image();
-          img.src = frameSrc(i);
-          img.decode().then(function () {
-            imgs[i] = img;
-            draw();
-          }).catch(function () {});
-        })(i);
+        order.push(i);
       }
     }
+    // decode a few at a time: firing all ~100 decode() calls at once was
+    // the actual cause of the stutter right at page load, not the seeking
+    var next = 0;
+    var CONCURRENCY = 4;
+    function pump() {
+      if (next >= order.length) return;
+      var i = order[next++];
+      var img = new Image();
+      img.src = frameSrc(i);
+      img.decode()
+        .then(function () {
+          imgs[i] = img;
+          draw();
+        })
+        .catch(function () {})
+        .then(pump);
+    }
+    for (var w = 0; w < CONCURRENCY; w++) pump();
   }
 
   function startScrub() {
