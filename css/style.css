@@ -338,6 +338,21 @@ a { color: inherit; }
   height: 22px;
 }
 
+.faq details {
+  border-bottom: 1px solid rgba(216,180,106,.45);
+  padding: 0.9rem 0;
+}
+
+.faq details:first-of-type { border-top: 1px solid rgba(216,180,106,.45); }
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--garden);
+}
+
+.faq details p { margin: 0.6rem 0 0; }
+
 .map-embed {
   position: relative;
   padding-top: 56%;

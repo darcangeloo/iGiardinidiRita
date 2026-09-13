@@ -12,7 +12,11 @@
 <meta property="og:type" content="lodging">
 <meta property="og:title" content="B&B Margherita di Savoia — I Giardini di Rita">
 <meta property="og:description" content="Bed & breakfast a Margherita di Savoia, Puglia, tra saline rosa e mare Adriatico. Camere curate, giardino mediterraneo, accoglienza familiare.">
-<meta property="og:image" content="https://i-giardinidi-rita.vercel.app/assets/logo.jpg">
+<meta property="og:image" content="https://i-giardinidi-rita.vercel.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Il giardino de I Giardini di Rita, B&B a Margherita di Savoia">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://i-giardinidi-rita.vercel.app/">
 <meta property="og:locale" content="it_IT">
 
@@ -24,7 +28,8 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@type": "BedAndBreakfast",
+  "@id": "https://i-giardinidi-rita.vercel.app/#bnb",
   "name": "I Giardini di Rita",
   "description": "Bed & breakfast a Margherita di Savoia, Puglia, tra saline rosa e mare Adriatico.",
   "image": "https://i-giardinidi-rita.vercel.app/assets/esterno.jpg",
@@ -39,6 +44,17 @@
   "telephone": "+39 2379928882",
   "url": "https://i-giardinidi-rita.vercel.app/",
   "priceRange": "€€",
+  "hasMap": "https://www.google.com/maps?q=Via+Cavaliere+15,+76016+Margherita+di+Savoia+BT",
+  "availableLanguage": ["it", "en"],
+  "petsAllowed": true,
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "WiFi gratuito", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Aria condizionata", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Giardino", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Parcheggio privato a pagamento", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Reception 24 ore su 24", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Colazione", "value": true}
+  ],
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 41.3783822,
@@ -95,8 +111,8 @@
 <!-- 2. Descrizione B&B -->
 <section class="section intro" id="bnb">
   <h2>
-    <span data-lang="it">La casa</span>
-    <span data-lang="en">The house</span>
+    <span data-lang="it">Il B&amp;B a Margherita di Savoia</span>
+    <span data-lang="en">The B&amp;B in Margherita di Savoia</span>
   </h2>
   <p>
     <span data-lang="it">I Giardini di Rita è un B&amp;B a pochi passi dal mare di Margherita di Savoia, a 100 metri dalla spiaggia e a 600 metri dalla Chiesa Matrice Maria SS. Immacolata. Le camere hanno aria condizionata e WiFi gratuito, e si affacciano su un giardino con angolo ristoro; su richiesta è disponibile anche un servizio ristorante. Il parcheggio privato è disponibile con un costo aggiuntivo. La colazione, italiana o à la carte, apre la giornata; la reception è attiva 24 ore su 24 e parla italiano e inglese. Nei dintorni si può camminare, pescare o pedalare, e lo staff aiuta a organizzare un noleggio auto per chi vuole spingersi più lontano.</span>
@@ -181,6 +197,46 @@
     <span data-lang="it">Scrivici su WhatsApp</span>
     <span data-lang="en">Message us on WhatsApp</span>
   </a>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <h2>
+    <span data-lang="it">Domande frequenti sul B&amp;B a Margherita di Savoia</span>
+    <span data-lang="en">FAQ about our B&amp;B in Margherita di Savoia</span>
+  </h2>
+  <details>
+    <summary><span data-lang="it">Quanto dista il B&amp;B dal mare?</span><span data-lang="en">How far is the B&amp;B from the sea?</span></summary>
+    <p><span data-lang="it">I Giardini di Rita si trova in Via Cavaliere 15, a 100 metri dalla spiaggia di Margherita di Savoia e a 600 metri dalla Chiesa Matrice Maria SS. Immacolata. Il mare si raggiunge a piedi in pochi minuti.</span><span data-lang="en">I Giardini di Rita is at Via Cavaliere 15, 100 metres from the beach of Margherita di Savoia and 600 metres from the Chiesa Matrice Maria SS. Immacolata. The sea is a few minutes' walk away.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">C'è il parcheggio?</span><span data-lang="en">Is there parking?</span></summary>
+    <p><span data-lang="it">Sì, è disponibile un parcheggio privato con un costo aggiuntivo. Scrivici su WhatsApp prima dell'arrivo per organizzarlo.</span><span data-lang="en">Yes, private parking is available for an extra fee. Message us on WhatsApp before you arrive to arrange it.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">Sono ammessi animali?</span><span data-lang="en">Are pets allowed?</span></summary>
+    <p><span data-lang="it">Sì, gli animali domestici sono ammessi. Per qualsiasi dettaglio scrivici prima di prenotare.</span><span data-lang="en">Yes, pets are allowed. Message us before booking for any details.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">Com'è la colazione?</span><span data-lang="en">What is breakfast like?</span></summary>
+    <p><span data-lang="it">Il B&amp;B offre colazione italiana o à la carte, da gustare anche nel giardino.</span><span data-lang="en">The B&amp;B offers an Italian or à la carte breakfast, which you can also enjoy in the garden.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">Le camere hanno WiFi e aria condizionata?</span><span data-lang="en">Do rooms have WiFi and air conditioning?</span></summary>
+    <p><span data-lang="it">Sì, le camere hanno WiFi gratuito e aria condizionata.</span><span data-lang="en">Yes, rooms have free WiFi and air conditioning.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">La reception è sempre aperta?</span><span data-lang="en">Is reception always open?</span></summary>
+    <p><span data-lang="it">La reception è attiva 24 ore su 24 e lo staff parla italiano e inglese.</span><span data-lang="en">Reception is open 24 hours a day and staff speak Italian and English.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">Cosa vedere vicino al B&amp;B?</span><span data-lang="en">What is there to see nearby?</span></summary>
+    <p><span data-lang="it">In paese ci sono le saline di Margherita di Savoia, riserva naturale dove sostano i fenicotteri, e le terme. In auto si raggiungono il Castello Normanno Svevo e il Colosso di Barletta (14 km) e il Parco dell'Umanità (15 km). L'aeroporto più vicino è il Gino Lisa di Foggia, a 66 km.</span><span data-lang="en">In town you'll find the Margherita di Savoia salt pans, a nature reserve where flamingos stop over, and the thermal baths. By car you can reach the Castello Normanno Svevo and the Colossus of Barletta (14 km) and the Parco dell'Umanità (15 km). The nearest airport is Foggia Gino Lisa, 66 km away.</span></p>
+  </details>
+  <details>
+    <summary><span data-lang="it">Come si prenota?</span><span data-lang="en">How do I book?</span></summary>
+    <p><span data-lang="it">Puoi prenotare su Booking.com oppure scriverci su WhatsApp al +39 2379928882 per disponibilità e informazioni.</span><span data-lang="en">You can book on Booking.com or message us on WhatsApp at +39 2379928882 for availability and information.</span></p>
+  </details>
 </section>
 
 <!-- 5. Mappa -->

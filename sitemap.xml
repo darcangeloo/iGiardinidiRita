@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://i-giardinidi-rita.vercel.app/</loc>
     <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/esterno.jpg</image:loc></image:image>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/Stanze%20e%20giardino/Stanza%201.jpg</image:loc></image:image>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/Stanze%20e%20giardino/Stanza%202.jpg</image:loc></image:image>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/304506912.jpg</image:loc></image:image>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/Stanze%20e%20giardino/1023234.jpg</image:loc></image:image>
+    <image:image><image:loc>https://i-giardinidi-rita.vercel.app/assets/Stanze%20e%20giardino/Bagno.jpg</image:loc></image:image>
   </url>
 </urlset>
