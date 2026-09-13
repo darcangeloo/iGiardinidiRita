@@ -59,8 +59,6 @@
   var FRAME_COUNT = 100;
   var imgs = new Array(FRAME_COUNT);
   var target = 0;
-  var pos = 0;
-  var drawn = -1;
   var rafId = 0;
   var scrubStarted = false;
 
@@ -77,22 +75,31 @@
     return -1;
   }
 
+  // cross-dissolve the two frames straddling the exact position: 100
+  // discrete stills over a long scroll range would otherwise visibly
+  // step on a fast flick instead of reading as continuous motion
   function draw() {
-    var i = nearest(Math.round(pos));
-    if (i < 0 || i === drawn) return;
-    ctx.drawImage(imgs[i], 0, 0, canvas.width, canvas.height);
-    drawn = i;
+    var lo = Math.floor(target);
+    var frac = target - lo;
+    var a = nearest(lo);
+    if (a < 0) return;
+    ctx.globalAlpha = 1;
+    ctx.drawImage(imgs[a], 0, 0, canvas.width, canvas.height);
+    var b = nearest(Math.min(lo + 1, FRAME_COUNT - 1));
+    if (b >= 0 && b !== a && frac > 0.01) {
+      ctx.globalAlpha = frac;
+      ctx.drawImage(imgs[b], 0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = 1;
+    }
   }
 
-  // ease the shown frame toward the scroll position instead of jumping
   function tick() {
     rafId = 0;
-    pos += (target - pos) * 0.25;
-    if (Math.abs(target - pos) < 0.1) pos = target;
     draw();
-    if (pos !== target) rafId = requestAnimationFrame(tick);
   }
 
+  // render at most once per animation frame, tracking scroll 1:1 (no
+  // easing lag) so the image stays attached to the finger while dragging
   function onScroll() {
     var rect = heroSection.getBoundingClientRect();
     var scrollable = heroSection.offsetHeight - window.innerHeight;
@@ -114,7 +121,6 @@
           img.src = frameSrc(i);
           img.decode().then(function () {
             imgs[i] = img;
-            drawn = -1;
             draw();
           }).catch(function () {});
         })(i);
